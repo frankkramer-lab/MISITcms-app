@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  cms-app:    
+    build: ./cms-app
+    command: ./wait-for-it.sh cms-db:5432 -- bash /root/docker-entrypoint.sh
+    expose:
+      - "8000-8010"
+    volumes:
+      - ./cms-app/docker-entrypoint.sh:/root/docker-entrypoint.sh:ro
+      - ./cms-app/config:/root/cms/config:ro
+      - ./courses:/root/cms-data
+      - ./cms-logs:/var/log/cms
+    links:
+      - cms-db
+    depends_on:
+      - cms-db
+
+  nginx:
+    image: nginx
+    ports:
+       - "80:80"
+       - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/cms.key:/etc/nginx/certs/cms.key:ro
+      - ./nginx/cms.crt:/etc/nginx/certs/cms.crt:ro
+    restart: unless-stopped
+    links:
+      - cms-app
+
+  cms-db:
+    image: postgres:10.0-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=cmsuser
+      - POSTGRES_PASSWORD=cmspass
+      - POSTGRES_DB=cms_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+      - ./postgres/initdb.sql:/docker-entrypoint-initdb.d/init.sql
+    expose:
+      - "5432"
+
+volumes:
+  postgres_data:
