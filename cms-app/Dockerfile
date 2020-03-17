@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
 RUN apt-get update && \
-    apt-get install -y build-essential openjdk-8-jdk-headless fp-compiler \
+    apt-get install -y locales build-essential openjdk-8-jdk-headless fp-compiler \
                 postgresql-client python3.6 python3.6-dev python3-pip cppreference-doc-en-html \
 		cgroup-lite libcap-dev zip sudo libpq-dev libcups2-dev libyaml-dev \
 		libffi-dev git && \
@@ -25,10 +25,11 @@ RUN apt-get update && \
 ENV LC_ALL="en_US.UTF-8"
 ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US.UTF-8"
+RUN locale-gen "en_US.UTF-8"
 
 RUN git clone https://github.com/cms-dev/cms.git -b master --recursive && cd cms && git checkout d4c9e926bd52d8022069c417b206b0882ef4d1ba
+RUN cd cms && pip3 install -r requirements.txt
 RUN cd cms && python3 setup.py install
-RUN pip3 install -r cms/requirements.txt
 
 RUN mkdir -p /var/log/cms
 

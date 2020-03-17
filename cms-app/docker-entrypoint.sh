@@ -33,7 +33,7 @@ done
 for id in "${contest_ids[@]}" ; do
     python3 scripts/cmsContestWebServer -c $id  | tee -a /var/log/cms/contestserver &
     python3 scripts/cmsScoringService -c $id    | tee -a /var/log/cms/scoringservice &
-    python3 scripts/cmsEvaluationService -c $id | tee -a /var/log/cms/evaluationservice &    
+    python3 scripts/cmsEvaluationService -c $id | tee -a /var/log/cms/evaluationservice &
 done
 
 wait
