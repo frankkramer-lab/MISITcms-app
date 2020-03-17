@@ -11,6 +11,7 @@ services:
       - ./cms-logs:/var/log/cms
     depends_on:
       - cms-db
+    restart: unless-stopped
 
   nginx:
     image: nginx
