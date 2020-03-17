@@ -1,6 +1,6 @@
 # Contest Management System (CMS) on Docker-Compose
 
-This project aims to wrap the Contest Management System [CMS]((https://github.com/cms-dev/cms) in a docker-compose setup.
+This project aims to wrap the Contest Management System [CMS](https://github.com/cms-dev/cms) in a docker-compose setup.
 
 ## How to Use
 
