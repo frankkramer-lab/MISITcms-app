@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 WORKDIR /root
 ADD ./wait-for-it.sh ./wait-for-it.sh
-ADD ./getconf.py /root/cms/config/getconf.py
+
 # Setup system environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -38,6 +38,7 @@ RUN cd cms && pip3 install -r requirements.txt
 RUN cd cms && python3 setup.py install
 
 RUN mkdir -p /var/log/cms
+ADD ./getconf.py /root/cms/config/getconf.py
 
 CMD ["/bin/bash"]
 
