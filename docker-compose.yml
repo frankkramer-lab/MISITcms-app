@@ -9,6 +9,10 @@ services:
       - ./cms-app/config:/root/cms/config:ro
       - ./cms-course:/root/cms-data/cms-course
       - ./cms-logs:/var/log/cms
+    environment:
+      - CMS_REPOSITORY_URL=https://git.rz.uni-augsburg.de/misit-code/cms-compose.git
+      - CMS_REPOSITORY_BRANCH=master
+      - CMS_CHECKOUT=d4c9e926bd52d8022069c417b206b0882ef4d1ba
     depends_on:
       - cms-db
     restart: unless-stopped

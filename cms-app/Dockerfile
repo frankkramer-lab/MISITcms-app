@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-
+ARG
 WORKDIR /root
 ADD ./wait-for-it.sh ./wait-for-it.sh
 # Setup system environment variables
@@ -27,7 +27,13 @@ ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US.UTF-8"
 RUN locale-gen "en_US.UTF-8"
 
-RUN git clone https://github.com/cms-dev/cms.git -b master --recursive && cd cms && git checkout d4c9e926bd52d8022069c417b206b0882ef4d1ba
+# Get CMS repository params
+ARG CMS_REPOSITORY_URL='https://git.rz.uni-augsburg.de/misit-code/cms-compose.git'
+ARG CMS_REPOSITORY_BRANCH='master'
+ARG CMS_CHECKOUT='d4c9e926bd52d8022069c417b206b0882ef4d1ba'
+
+RUN git clone ${cms_repository} -b ${cms_branch} --recursive 
+RUN cd cms && git checkout ${cms_checkout}
 RUN cd cms && pip3 install -r requirements.txt
 RUN cd cms && python3 setup.py install
 
