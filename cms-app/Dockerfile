@@ -1,5 +1,4 @@
 FROM ubuntu:18.04
-ARG
 WORKDIR /root
 ADD ./wait-for-it.sh ./wait-for-it.sh
 # Setup system environment variables
