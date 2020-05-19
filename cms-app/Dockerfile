@@ -27,9 +27,9 @@ ENV LANGUAGE="en_US.UTF-8"
 RUN locale-gen "en_US.UTF-8"
 
 # Get CMS repository params
-ARG CMS_REPOSITORY_URL='https://git.rz.uni-augsburg.de/misit-code/cms-compose.git'
+ARG CMS_REPOSITORY_URL='https://github.com/frankkramer-lab/MISITcms-app.git'
 ARG CMS_REPOSITORY_BRANCH='master'
-ARG CMS_CHECKOUT='d4c9e926bd52d8022069c417b206b0882ef4d1ba'
+ARG CMS_CHECKOUT=''
 
 RUN git clone ${cms_repository} -b ${cms_branch} --recursive 
 RUN cd cms && git checkout ${cms_checkout}
