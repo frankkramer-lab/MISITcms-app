@@ -27,7 +27,7 @@ ENV LANGUAGE="en_US.UTF-8"
 RUN locale-gen "en_US.UTF-8"
 
 # Get CMS repository params
-ARG CMS_REPOSITORY_URL='https://github.com/frankkramer-lab/MISITcms-app.git'
+ARG CMS_REPOSITORY_URL='https://github.com/frankkramer-lab/MISITcms.git'
 ARG CMS_REPOSITORY_BRANCH='master'
 ARG CMS_CHECKOUT=''
 

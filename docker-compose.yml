@@ -5,7 +5,7 @@ services:
     build:     
       context: ./cms-app
       args:
-        - CMS_REPOSITORY_URL=https://github.com/frankkramer-lab/MISITcms-app.git
+        - CMS_REPOSITORY_URL=https://github.com/frankkramer-lab/MISITcms.git
         - CMS_REPOSITORY_BRANCH=master
         - CMS_CHECKOUT=master
 
