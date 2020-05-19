@@ -2,10 +2,17 @@
 
 echo "Starting CMS services..."
 cd /root/cms
-python3 scripts/cmsInitDB
 
-# Create/Update admin account
-python3 cmscontrib/AddAdmin.py $(python3 config/getconf.py admin_user) -p  $(python3 config/getconf.py admin_password)
+PGPASSWORD=$POSTGRES_PASSWORD psql -d $POSTGRES_DB -h cms-db -U $POSTGRES_USER -c "SELECT COUNT(name) FROM admins" | grep "0"
+if [ $? -eq 0 ]; then
+   echo "DB needs initialization..."
+   python3 scripts/cmsInitDB
+   # Create/Update admin account
+   python3 cmscontrib/AddAdmin.py $(python3 config/getconf.py admin_user) -p  $(python3 config/getconf.py admin_password)
+else
+   echo "DB was already initialized..."
+fi
+
 
 # Install all course packages for all courses
 for c_dir in /root/cms-data/*/ ; do

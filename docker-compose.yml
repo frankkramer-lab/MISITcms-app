@@ -14,6 +14,10 @@ services:
       - ./cms-config:/root/cms/config:ro
       - ./cms-course:/root/cms-data/cms-course
       - ./cms-logs:/var/log/cms
+    environment:
+      - POSTGRES_USER=cmsuser
+      - POSTGRES_PASSWORD=cmspass
+      - POSTGRES_DB=cms_db
     depends_on:
       - cms-db
     restart: unless-stopped
