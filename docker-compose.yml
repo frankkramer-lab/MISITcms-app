@@ -8,7 +8,6 @@ services:
         - CMS_REPOSITORY_URL=https://github.com/frankkramer-lab/MISITcms.git
         - CMS_REPOSITORY_BRANCH=master
         - CMS_CHECKOUT=master
-
     command: ./wait-for-it.sh cms-db:5432 -- bash /root/docker-entrypoint.sh
     volumes:
       - ./cms-app/docker-entrypoint.sh:/root/docker-entrypoint.sh:ro
@@ -22,8 +21,8 @@ services:
   nginx:
     image: nginx
     ports:
-       - "80:80"
-       - "443:443"
+      - "80:80"
+      - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/cms.key:/etc/nginx/certs/cms.key:ro
