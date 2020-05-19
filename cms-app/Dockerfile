@@ -38,8 +38,6 @@ RUN cd cms && pip3 install -r requirements.txt
 RUN cd cms && python3 setup.py install
 
 RUN mkdir -p /var/log/cms
-ADD ./getconf.py /root/cms/config/getconf.py
+ADD ./getconf.py /root/cms/scripts/getconf.py
 
 CMD ["/bin/bash"]
-
-
