@@ -31,7 +31,7 @@ ARG CMS_REPOSITORY_URL='https://github.com/frankkramer-lab/MISITcms.git'
 ARG CMS_REPOSITORY_BRANCH='master'
 ARG CMS_CHECKOUT=''
 
-RUN git clone ${CMS_REPOSITORY_URL} -b ${CMS_REPOSITORY_BRANCH} --recursive 
+RUN git clone ${CMS_REPOSITORY_URL} -b ${CMS_REPOSITORY_BRANCH} --recursive cms
 RUN cd cms && git checkout ${CMS_CHECKOUT}
 RUN cd cms && pip3 install -r requirements.txt
 RUN cd cms && python3 setup.py install
