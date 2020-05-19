@@ -7,7 +7,7 @@ services:
     volumes:
       - ./cms-app/docker-entrypoint.sh:/root/docker-entrypoint.sh:ro
       - ./cms-app/config:/root/cms/config:ro
-      - ./courses:/root/cms-data
+      - ./cms-course:/root/cms-data/cms-course
       - ./cms-logs:/var/log/cms
     depends_on:
       - cms-db
