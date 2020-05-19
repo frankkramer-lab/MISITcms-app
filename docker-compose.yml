@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  cms-app:    
-    build:     
+  cms-app:
+    build:
       context: ./cms-app
       args:
         - CMS_REPOSITORY_URL=https://github.com/frankkramer-lab/MISITcms.git
@@ -12,7 +12,7 @@ services:
     volumes:
       - ./cms-app/docker-entrypoint.sh:/root/docker-entrypoint.sh:ro
       - ./cms-config:/root/cms/config:ro
-      - ./cms-course:/root/cms-data/cms-course
+      - ./cms-course:/root/cms-data
       - ./cms-logs:/var/log/cms
     depends_on:
       - cms-db
