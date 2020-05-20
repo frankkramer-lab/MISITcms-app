@@ -1,1 +1,1 @@
--a 3 -b 77 --shout Die Lösung ist:
+-a 3 -b 77 --shout Lösung:
