@@ -21,6 +21,7 @@ services:
     depends_on:
       - cms-db
     restart: unless-stopped
+    privileged: true
 
   nginx:
     image: nginx
