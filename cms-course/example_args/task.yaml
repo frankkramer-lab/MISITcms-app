@@ -1,0 +1,9 @@
+name: "example_args"
+title: "Example Task Title with args"
+time_limit: 5
+memory_limit: 256
+n_input: 3
+public_testcases: 0, 1, 2
+infile: ""
+outfile: "output.txt"
+token_mode: disabled
