@@ -30,8 +30,7 @@ pip3 install -r /root/cms-data/requirements.txt
 python3 scripts/cmsContestWebServer -c $contest_id  | tee -a /var/log/cms/contestserver &
 python3 scripts/cmsScoringService -c $contest_id    | tee -a /var/log/cms/scoringservice &
 python3 scripts/cmsEvaluationService -c $contest_id | tee -a /var/log/cms/evaluationservice &
-# worker=$(python3 scripts/getconf.py admin_user)
-worker=3
+worker=$(python3 scripts/getconf.py number_of_workers)
 for i in $(seq 1 $worker); do
   python3 scripts/cmsWorker $i | tee -a /var/log/cms/worker$i &
 done
