@@ -1,6 +1,5 @@
 name: "example_simple"
 title: "Example Task Title v1"
-submission_format: simple_script.%l
 time_limit: 5
 memory_limit: 256
 n_input: 5
