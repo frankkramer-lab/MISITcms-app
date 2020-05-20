@@ -1,12 +1,25 @@
+#-----------------------------------------------------#
+#              Information & System Base              #
+#-----------------------------------------------------#
 FROM ubuntu:18.04
 WORKDIR /root
 ADD ./wait-for-it.sh ./wait-for-it.sh
 
+LABEL authors="Johann Frei, Dominik Müller"
+LABEL contact="dominik.mueller@informatik.uni-augsburg.de"
+LABEL repository="https://github.com/frankkramer-lab/MISITcms-app"
+LABEL license="GNU General Public License v3.0"
+
+#-----------------------------------------------------#
+#                     System Setup                    #
+#-----------------------------------------------------#
 # Setup system environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Adjust timezone
 RUN ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
+# Install required software
 RUN apt-get update && \
     apt-get install -y locales build-essential openjdk-8-jdk-headless fp-compiler \
                 postgresql-client python3.6 python3.6-dev python3-pip cppreference-doc-en-html \
@@ -27,11 +40,15 @@ ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US.UTF-8"
 RUN locale-gen "en_US.UTF-8"
 
+#-----------------------------------------------------#
+#                      CMS Setup                      #
+#-----------------------------------------------------#
 # Get CMS repository params
 ARG CMS_REPOSITORY_URL='https://github.com/frankkramer-lab/MISITcms.git'
 ARG CMS_REPOSITORY_BRANCH='master'
 ARG CMS_CHECKOUT=''
 
+# Install CMS
 RUN git clone ${CMS_REPOSITORY_URL} -b ${CMS_REPOSITORY_BRANCH} --recursive cms
 RUN cd cms && git checkout ${CMS_CHECKOUT}
 RUN cd cms && pip3 install -r requirements.txt
@@ -39,5 +56,10 @@ RUN cd cms && python3 setup.py install
 
 RUN mkdir -p /var/log/cms
 ADD ./getconf.py /root/cms/scripts/getconf.py
+
+#-----------------------------------------------------#
+#                   Finish & Startup                  #
+#-----------------------------------------------------#
+# Dev-Comment: add docker entrypoint later (instead of mounting)
 
 CMD ["/bin/bash"]
