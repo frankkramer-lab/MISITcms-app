@@ -4,12 +4,13 @@ echo "Starting CMS services..."
 cd /root/cms
 
 # Database & Admin account initialization
-if [ ! -f "init.lock" ]; then
+# Check whether the table 'admins' exists to detect empty db
+PGPASSWORD=$POSTGRES_PASSWORD psql -d $POSTGRES_DB -h cms-db -U $POSTGRES_USER -c "SELECT count(table_name) from information_schema.tables where table_name = 'admins'" | grep 0 >> /dev/null 2>&1
+if [ $? -eq 0 ]; then
    echo "DB needs initialization..."
    python3 scripts/cmsInitDB
    # Create/Update admin account
    python3 cmscontrib/AddAdmin.py $(python3 scripts/getconf.py admin_user) -p  $(python3 scripts/getconf.py admin_password)
-   touch "init.lock"
 else
    echo "DB was already initialized..."
 fi
