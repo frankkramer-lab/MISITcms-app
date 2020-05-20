@@ -1,0 +1,9 @@
+name: "example_data"
+title: "Example Task Title with mounted data access"
+time_limit: 5
+memory_limit: 256
+n_input: 2
+public_testcases: 0, 1
+infile: ""
+outfile: ""
+token_mode: disabled

@@ -5,6 +5,7 @@ tasks:
   - "example_grader"
   - "example_multiScripts"
   - "example_args"
+  - "example_data"
 users:
   - username: "u1"
     password: "p1"
