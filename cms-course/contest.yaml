@@ -1,7 +1,7 @@
 name: "example_contest"
 description: "I'm a minimal example"
 tasks:
-  - "example_task"
+  - "example_simple"
 users:
   - username: "u1"
     password: "p1"
