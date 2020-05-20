@@ -1,0 +1,13 @@
+name: "example_multiScripts"
+title: "Example Task Title with multiple scripts"
+submission_format:
+  - runner.%l
+  - my_script1.%l
+  - my_script2.%l
+time_limit: 5
+memory_limit: 256
+n_input: 5
+public_testcases: 0, 1, 2, 3, 4
+infile: "input.txt"
+outfile: ""
+token_mode: disabled
