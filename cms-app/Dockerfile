@@ -52,8 +52,15 @@ ARG CMS_CHECKOUT=''
 RUN git clone ${CMS_REPOSITORY_URL} -b ${CMS_REPOSITORY_BRANCH} --recursive cms
 RUN cd cms && git checkout ${CMS_CHECKOUT}
 RUN cd cms && pip3 install -r requirements.txt
+RUN	cd cms && python3 prerequisites.py --as-root build
+RUN	cd cms && python3 prerequisites.py --as-root install
 RUN cd cms && python3 setup.py install
 
+# Setup CMS environment variables
+ENV PATH="${PATH}:/root/cms/isolate/"
+ENV PYTHONPATH="/root/cms/"
+
+# Further initializations
 RUN mkdir -p /var/log/cms
 ADD ./getconf.py /root/cms/scripts/getconf.py
 
