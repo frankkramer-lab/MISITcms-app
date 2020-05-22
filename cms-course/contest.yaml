@@ -3,6 +3,7 @@ description: "I'm a minimal example"
 tasks:
   - "example_simple"
   - "example_grader"
+  - "example_checker"
   - "example_multiScripts"
   - "example_args"
   - "example_data"

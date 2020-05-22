@@ -1,0 +1,30 @@
+#!/usr/bin/python3
+
+# Import libraries
+import sys
+
+# Parse data
+args = sys.argv[1:]
+path_input = args[0]
+path_output_solution = args[1]
+path_output_submission = args[2]
+
+# Read input
+with open(path_input, "r") as reader:
+    input = reader.read()
+
+# Read submission output
+with open(path_output_submission, "r") as reader:
+    out_usr = reader.read()
+
+# Read solution output
+with open(path_output_solution, "r") as reader:
+    out_sol = reader.read()
+
+# Do your own evaluation of submission output
+if out_usr == out_sol:
+    sys.stderr.write("Output is correct" + "\n")
+    print(1.0)
+else:
+    sys.stderr.write("User output does NOT match solution output" + "\n")
+    print(0.0)
