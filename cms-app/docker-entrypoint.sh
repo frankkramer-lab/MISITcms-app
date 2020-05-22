@@ -10,7 +10,7 @@ if [ $? -eq 0 ]; then
    echo "DB needs initialization..."
    python3 scripts/cmsInitDB 2>&1 | tee -a /var/log/cms/initdb
    # Create/Update admin account
-   python3 cmscontrib/AddAdmin.py $(jq -r '.["admin_user"]' ./config/cms.conf ) -p  $(jq -r '.["admin_password"]' "./config/cms.conf" ) 2>&1 | tee -a /var/log/cms/addadmin
+   python3 cmscontrib/AddAdmin.py $(jq -r '.["admin_user"]' ./config/cms.conf ) -p  $(jq -r '.["admin_password"]' ./config/cms.conf ) 2>&1 | tee -a /var/log/cms/addadmin
 else
    echo "DB was already initialized..."
 fi
