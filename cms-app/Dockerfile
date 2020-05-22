@@ -62,7 +62,6 @@ ENV PYTHONPATH="/root/cms/"
 
 # Further initializations
 RUN mkdir -p /var/log/cms
-ADD ./getconf.py /root/cms/scripts/getconf.py
 
 #-----------------------------------------------------#
 #                   Finish & Startup                  #

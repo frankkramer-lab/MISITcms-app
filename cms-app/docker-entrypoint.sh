@@ -10,7 +10,7 @@ if [ $? -eq 0 ]; then
    echo "DB needs initialization..."
    python3 scripts/cmsInitDB
    # Create/Update admin account
-   python3 cmscontrib/AddAdmin.py $(python3 scripts/getconf.py admin_user) -p  $(python3 scripts/getconf.py admin_password)
+   python3 cmscontrib/AddAdmin.py $(python3 cmscontrib/misit/config_reader.py admin_user) -p  $(python3 cmscontrib/misit/config_reader.py admin_password)
 else
    echo "DB was already initialized..."
 fi
@@ -40,7 +40,7 @@ python3 scripts/cmsScoringService -c $contest_id    | tee -a /var/log/cms/scorin
 python3 scripts/cmsEvaluationService -c $contest_id | tee -a /var/log/cms/evaluationservice &
 
 # Initialize worker nodes (number of workers are obtained from cms-config/cms.conf)
-worker=$(python3 scripts/getconf.py number_of_workers)
+worker=$(python3 cmscontrib/misit/config_reader.py number_of_workers)
 for i in $(seq 1 $worker); do
   python3 scripts/cmsWorker $i | tee -a /var/log/cms/worker$i &
 done
