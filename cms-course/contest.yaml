@@ -11,4 +11,6 @@ users:
     password: "p1"
     ip: null
 
+languages:
+  - "Python 3 / CPython"
 token_mode: infinite
