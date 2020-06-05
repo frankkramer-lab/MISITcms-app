@@ -111,6 +111,12 @@ CMS is composed of several services, that can be run on a single or on many serv
 - "enable_output_stdout/err" option in config file to allow users viewing the stderr or/and stdout of their submissions if required
 - Configurable number of initialized workers in config file
 
+## Screenshots
+
+![Assignment](docs/assignment.png)
+
+![Assignment](docs/submission.png)
+
 ## Authors
 
 **Johann Frei**  
