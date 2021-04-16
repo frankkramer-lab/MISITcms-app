@@ -119,6 +119,12 @@ CMS is composed of several services, that can be run on a single or on many serv
 
 ## Authors
 
+**Florian Auer**  
+Email: florian.auer@informatik.uni-augsburg.de  
+IT-Infrastructure for Translational Medical Research  
+University Augsburg  
+Augsburg, Bavaria, Germany
+
 **Johann Frei**  
 Email: johann.frei@informatik.uni-augsburg.de  
 IT-Infrastructure for Translational Medical Research  
