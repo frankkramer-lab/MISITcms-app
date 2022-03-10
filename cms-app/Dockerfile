@@ -30,8 +30,12 @@ RUN apt-get update && \
 		python3-bs4 python3-coverage python3-requests python3-werkzeug \
 		python3-gevent python3-bcrypt python3-chardet patool python3-babel \
 		python3-xdg python3-jinja2 && \
+    apt-get install -y python3.8 python3.8-dev && \
     \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Update Python3.8 pip
+RUN python3.8 -m pip install pip --upgrade
 
 # Add UTF-8 as default language encoding
 # RUN locale-gen en_US.UTF-8

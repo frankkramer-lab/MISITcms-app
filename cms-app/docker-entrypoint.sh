@@ -29,7 +29,7 @@ contest_id=($(echo $contest_out | sed -nr 's/.*\(new contest id: ([0-9]+)\)\.$/\
 # Install python packages which are needed for the assignments
 if [ -f "/root/cms-data/requirements.txt" ]; then
   echo "Python package requirements for assignments found. Installing..."
-  pip3 install -r /root/cms-data/requirements.txt
+  python3.8 -m pip install -r /root/cms-data/requirements.txt --target=/usr/local/lib/python3.8/dist-packages/
 else
   echo "No Python package requirements found for assignments."
 fi
