@@ -55,7 +55,7 @@ ARG CMS_CHECKOUT=''
 # Install CMS
 RUN git clone ${CMS_REPOSITORY_URL} -b ${CMS_REPOSITORY_BRANCH} --recursive cms
 RUN cd cms && git checkout ${CMS_CHECKOUT}
-RUN cd cms && pip3 install -r requirements.txt
+RUN cd cms && python3 -m pip install -r requirements.txt
 RUN cd cms && python3 prerequisites.py --as-root build
 RUN cd cms && python3 prerequisites.py --as-root install
 RUN cd cms && python3 setup.py install
